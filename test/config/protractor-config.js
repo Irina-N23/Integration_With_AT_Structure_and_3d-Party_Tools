@@ -5,18 +5,19 @@ const path = require("path");
 const cucumberHtmlReporter = require("cucumber-html-reporter");
 const junitReporter = require("cucumber-junit-convert");
 const {logger} = require("./logger-config");
+const {createTotalJsonReport} = require("../utilities/total-json-report");
 
 
 const htmlReportOptions = {
     theme: "bootstrap",
-    jsonFile: path.join(__dirname, "../reports/report.json"),
+    jsonFile: path.join(__dirname, "../reports/total-report.json"),
     output: path.join(__dirname, "../reports/cucumber-report.html"),
     reportSuitesAsScenarios: true,
     launchReport: true
 }
 
 const xmlReportOptions = {
-    inputJsonFile: path.join(__dirname, "../reports/report.json"),
+    inputJsonFile: path.join(__dirname, "../reports/total-report.json"),
     outputXmlFile: path.join(__dirname, "../reports/junit-report.xml")
 }
 
@@ -49,7 +50,7 @@ exports.config = {
             "json:./test/reports/report.json",
             "./node_modules/cucumber-pretty"
         ],
-        tags: yargs.tags || "@common"
+        tags: yargs.tags || []
     },
 
     onPrepare: () => {
@@ -59,6 +60,7 @@ exports.config = {
     },
 
     afterLaunch: () => {
+        createTotalJsonReport();
         junitReporter.convert(xmlReportOptions);
         return cucumberHtmlReporter.generate(htmlReportOptions);
     },
