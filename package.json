@@ -1,0 +1,45 @@
+{
+  "name": "integration_with_at_structure_and_3d-party_tools",
+  "version": "1.0.0",
+  "description": "a framework with test reporting with javascript libraries",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "protractor ./test/config/protractor-config.js",
+    "remove-logs": "node ./test/utilities/cleanUp/logs-cleaner.js",
+    "remove-reports": "node ./test/utilities/cleanUp/reports-cleaner.js",
+    "pretest": "npm run remove-logs && npm run remove-reports",
+    "update": "webdriver-manager update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Irina-N23/Integration_With_AT_Structure_and_3d-Party_Tools.git"
+  },
+  "keywords": [
+    "test-reporting",
+    "cucumber-pretty",
+    "screenshot",
+    "framework",
+    "javascript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Irina-N23/Integration_With_AT_Structure_and_3d-Party_Tools/issues"
+  },
+  "homepage": "https://github.com/Irina-N23/Integration_With_AT_Structure_and_3d-Party_Tools#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "cucumber": "^6.0.5",
+    "cucumber-html-reporter": "^5.2.0",
+    "cucumber-junit-convert": "^1.1.0",
+    "cucumber-pretty": "^6.0.0",
+    "fs-extra": "^9.0.1",
+    "protractor": "^7.0.0",
+    "protractor-cucumber-framework": "^6.2.1",
+    "winston": "^3.3.3",
+    "yargs": "^16.1.1"
+  }
+}
